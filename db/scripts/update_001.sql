@@ -25,7 +25,7 @@ create table post (
                       id serial primary key,
                       description text,
                       car_id int references car(id),
-                      user_id int references users(id),
+                      driver_id int references driver(id),
                       photo byte,
                       sales boolean
 );
