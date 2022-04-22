@@ -1,6 +1,7 @@
 package ru.job4j.cars.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "post")
@@ -19,8 +20,14 @@ public class Post {
     @JoinColumn(name = "driver_id")
 
     private Driver driver;
-    private byte[] photo;
+    private String photo;
     private boolean sales;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
 
     public Post() {
     }
@@ -57,11 +64,11 @@ public class Post {
         this.driver = driver;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -71,5 +78,17 @@ public class Post {
 
     public void setSales(boolean sales) {
         this.sales = sales;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Brand getBrand() {
+        return brand;
     }
 }
